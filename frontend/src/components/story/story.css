@@ -1,0 +1,76 @@
+.story {
+  background-color: #eee;
+  margin: 0.313rem 0.938rem;
+  padding: 1.875rem 0.938rem;
+  border-radius: 1.25rem;
+  width: 43.75rem;
+}
+.react-tabs__tab-list {
+  display: flex;
+  justify-content: space-between;
+}
+.react-tabs__tab {
+  font-weight: bold !important;
+}
+.react-tabs__tab--selected {
+  background: none !important;
+  border: none !important;
+  border-color: none !important;
+  border-bottom: 1px solid #f00 !important;
+  color: #f00 !important;
+}
+.storyGroups {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.storyGroups .storyGroup {
+  border-radius: 1.25rem;
+  margin: 0.938rem 0;
+  flex: 0 0 auto;
+  width: 9.375rem;
+  height: 15.625rem;
+  margin-right: 1.375rem;
+  background: #fff;
+}
+.storyGroups::-webkit-scrollbar {
+  height: 0.313rem;
+}
+.storyGroups::-webkit-scrollbar-track {
+  background: #fff;
+}
+.storyGroups::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.storyGroups::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.storyGroups .storyGroup .storyCard .hidden {
+  display: none;
+}
+.storyGroups .storyGroup .storyCard {
+  height: 100%;
+}
+.storyGroups .storyGroup .storyCard label {
+  display: flex;
+  flex-direction: column;
+}
+.storyGroups .storyGroup .storyCard label .storyBody {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.storyGroups .storyGroup .storyCard label .storyBody img {
+  width: auto;
+  height: 100%;
+}
+.storyGroups .storyGroup .storyCard .storyFooter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}

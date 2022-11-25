@@ -1,0 +1,95 @@
+.top {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  justify-content: space-between;
+}
+.topLeft,
+.topMiddle,
+.topRight {
+  display: flex;
+  align-items: center;
+}
+.topLeft logo {
+  font-size: 1.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.topLeft .topSearch {
+  position: relative;
+  margin-left: 0.625rem;
+}
+.topLeft .topSearch input {
+  border: none;
+  outline: none;
+  width: 12.5rem;
+  border-radius: 1.25rem;
+  background: rgb(238, 238, 238);
+  height: 1.875rem;
+  color: #000;
+  padding: 0rem 0.625rem;
+}
+
+.topLeft .topSearch svg {
+  position: absolute;
+  right: 0.625rem;
+  color: #a5a5a5;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.topMiddle .topLinks ul {
+  display: flex;
+}
+.topMiddle .topLinks ul li {
+  margin: 0 0.625rem;
+}
+.topMiddle .topLinks ul li a {
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.5s;
+}
+.topMiddle .topLinks ul li a:hover {
+  border-bottom: 2px solid #000;
+}
+.topMiddle .topLinks ul li .active {
+  border-bottom: 2px solid #000;
+}
+.topRight .notifications {
+  display: flex;
+}
+.topRight .notifications .notification {
+  margin: 0 0.938rem;
+  cursor: pointer;
+  position: relative;
+}
+.topRight .notifications .notification .badge {
+  position: absolute;
+  top: -0.625rem;
+  left: 0.625rem;
+  background: #f00;
+  width: 0.938rem;
+  height: 0.938rem;
+  border-radius: 50%;
+  padding: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: bold;
+}
+.topRight .user {
+  margin-left: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+.topRight .user img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+}
+.topRight .user .userLogout {
+  cursor: pointer;
+}
+.topRight .user .userLogout:hover {
+  color: #a5a5a5;
+}
