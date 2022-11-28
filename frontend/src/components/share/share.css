@@ -1,0 +1,59 @@
+.share {
+  background-color: #eee;
+  margin: 2.5rem 0.938rem;
+  padding: 1.875rem 0.938rem;
+  border-radius: 1.25rem;
+  width: 43.75rem;
+}
+.shareGroups .shareGroup {
+  padding: 0.625rem 0;
+}
+.shareGroups .shareGroup:first-child {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.188rem solid #fff;
+}
+
+.shareGroups .shareGroup .shareGroupLeft img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.shareGroups .shareGroup .shareGroupRight input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 2.5rem;
+  margin-left: 0.625rem;
+  padding-left: 0.625rem;
+  border-radius: 0.625rem;
+}
+.shareGroup:last-child {
+  display: flex;
+}
+.shareGroupIcons {
+  flex: 3;
+  display: flex;
+}
+.shareGroupIcon {
+  margin-right: 1.563rem;
+  cursor: pointer;
+}
+.shareGroupIcon svg {
+  margin-right: 0.313rem;
+}
+.shareGroupIcon:first-child svg {
+  color: #0f0;
+}
+.shareGroupIcon svg {
+}
+
+.shareGroupShareBtn {
+  flex: 1;
+}
+
+.shareGroupShareBtn button {
+  display: block;
+  margin: 0 0 0 auto;
+}

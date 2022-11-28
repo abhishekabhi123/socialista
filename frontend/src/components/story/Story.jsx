@@ -31,11 +31,101 @@ function Story() {
                 <input type="file" name="" id="add" className="hidden" />
               </div>
             </div>
-            <div className="storyGroup">My</div>
-            <div className="storyGroup">1</div>
-            <div className="storyGroup">2</div>
-            <div className="storyGroup">3</div>
-            <div className="storyGroup">4</div>
+            <div className="storyGroup">
+              <div className="storyDiv">
+                <div className="storyUserAddImgDiv">
+                  {
+                    <img
+                      src="./assets/images/user/storyuser.jpg"
+                      className="storyUserAddImg"
+                      alt=""
+                    />
+                  }
+                </div>
+                <div className="storyUser">
+                  <img src="./assets/images/user/story.jpg" alt="" />
+                </div>
+                <div className="storyUserTitle">
+                  <h5>Your story</h5>
+                </div>
+              </div>
+            </div>
+            <div className="storyGroup">
+              <div className="storyDiv">
+                <div className="storyUserAddImgDiv">
+                  {
+                    <img
+                      src="./assets/images/user/storyuser.jpg"
+                      className="storyUserAddImg"
+                      alt=""
+                    />
+                  }
+                </div>
+                <div className="storyUser">
+                  <img src="./assets/images/user/story.jpg" alt="" />
+                </div>
+                <div className="storyUserTitle">
+                  <h5>Your story</h5>
+                </div>
+              </div>
+            </div>{" "}
+            <div className="storyGroup">
+              <div className="storyDiv">
+                <div className="storyUserAddImgDiv">
+                  {
+                    <img
+                      src="./assets/images/user/storyuser.jpg"
+                      className="storyUserAddImg"
+                      alt=""
+                    />
+                  }
+                </div>
+                <div className="storyUser">
+                  <img src="./assets/images/user/story.jpg" alt="" />
+                </div>
+                <div className="storyUserTitle">
+                  <h5>Your story</h5>
+                </div>
+              </div>
+            </div>{" "}
+            <div className="storyGroup">
+              <div className="storyDiv">
+                <div className="storyUserAddImgDiv">
+                  {
+                    <img
+                      src="./assets/images/user/storyuser.jpg"
+                      className="storyUserAddImg"
+                      alt=""
+                    />
+                  }
+                </div>
+                <div className="storyUser">
+                  <img src="./assets/images/user/story.jpg" alt="" />
+                </div>
+                <div className="storyUserTitle">
+                  <h5>Your story</h5>
+                </div>
+              </div>
+            </div>{" "}
+            <div className="storyGroup">
+              <div className="storyDiv">
+                <div className="storyUserAddImgDiv">
+                  {
+                    <img
+                      src="./assets/images/user/storyuser.jpg"
+                      className="storyUserAddImg"
+                      alt=""
+                    />
+                  }
+                </div>
+                <div className="storyUser">
+                  <img src="./assets/images/user/story.jpg" alt="" />
+                </div>
+                <div className="storyUserTitle">
+                  <h5>Your story</h5>
+                </div>
+              </div>
+            </div>
           </div>
         </TabPanel>
 

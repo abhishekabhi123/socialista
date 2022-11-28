@@ -55,6 +55,8 @@
 .storyGroups .storyGroup .storyCard label {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  cursor: pointer;
 }
 .storyGroups .storyGroup .storyCard label .storyBody {
   flex: 2;
@@ -64,13 +66,54 @@
 }
 
 .storyGroups .storyGroup .storyCard label .storyBody img {
-  width: auto;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  border-radius: 1.25rem 1.25rem 0 0;
 }
-.storyGroups .storyGroup .storyCard .storyFooter {
+.storyGroups .storyGroup .storyCard label .storyFooter {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+}
+
+.storyGroups .storyGroup .storyCard label .storyFooter svg {
+  position: absolute;
+  top: -1.25rem;
+  font-size: 1.875rem;
+  padding: 0.313rem;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.storyGroups .storyGroup .storyCard label .storyFooter h4 {
+  margin-top: 1.875rem;
+}
+.storyGroups .storyGroup .storyDiv {
+  position: relative;
+  cursor: pointer;
+}
+.storyGroups .storyGroup .storyDiv .storyUser img {
+  height: 15.5rem;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1.25rem;
+}
+.storyUserTitle {
+  position: absolute;
+  bottom: 2.188rem;
+  left: 0.313rem;
+  color: #fff;
+}
+.storyGroups .storyGroup .storyDiv .storyUserAddImgDiv {
+  position: absolute;
+  top: 1.25rem;
+  left: 0.313rem;
+}
+.storyUserAddImg {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
 }

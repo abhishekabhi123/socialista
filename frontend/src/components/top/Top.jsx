@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import "./top.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,8 +8,19 @@ import {
   faPerson,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "../../axios";
 
 function Top() {
+  const navigate = useNavigate();
+  const logout = () => {
+    console.log("logout");
+    axios.post("/api/logout").then((data) => {
+      console.log(data);
+      localStorage.removeItem("accessToken");
+      navigate("/login");
+    });
+  };
+
   return (
     <div className="top">
       <div className="topLeft">
@@ -56,7 +67,9 @@ function Top() {
             alt=""
             className="userImage"
           />
-          <span className="userLogout">Logout</span>
+          <span className="userLogout" onClick={logout}>
+            Logout
+          </span>
         </div>
       </div>
     </div>
