@@ -1,3 +1,11 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBell,
+  faMessage,
+  faPerson,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+
 import React from "react";
 import "./post.css";
 
@@ -16,7 +24,9 @@ function Post() {
               <span className="postUserName">Abhi</span>
               <span className="postDate">2 mins ago.</span>
             </div>
-            <div className="postHeaderRight"></div>
+            <div className="postCardHeaderRight">
+              <FontAwesomeIcon icon={faBell} />
+            </div>
           </div>
           <div className="postCardBody"></div>
           <div className="postCardFooter"></div>
