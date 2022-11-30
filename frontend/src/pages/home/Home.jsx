@@ -7,6 +7,7 @@ import Top from "../../components/top/Top";
 import "./home.css";
 import axios from "../../axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
 
 function Home() {
   let navigate = useNavigate();
@@ -30,6 +31,7 @@ function Home() {
         <News />
         <Rightbar />
       </div>
+      <Footer />
     </>
   );
 }

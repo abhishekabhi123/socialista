@@ -1,6 +1,5 @@
 .sidebar {
   flex: 1;
-  overflow-y: scroll;
 }
 .sidebar .sidebarGroups .sidebarGroup {
   padding-top: 0.75rem;

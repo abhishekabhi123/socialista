@@ -10,6 +10,7 @@ function News() {
       <Story />
       <Share />
       <Post />
+      <Post />
     </div>
   );
 }
