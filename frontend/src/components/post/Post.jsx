@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-
+import { users } from "../../data";
 import React from "react";
 import "./post.css";
 
-function Post() {
+function Post({ post }) {
   return (
     <div className="post">
       <div className="postGroups">
@@ -12,13 +12,17 @@ function Post() {
           <div className="postCardHeader">
             <div className="postCardHeaderLeft">
               <img
-                src="./assets/images/user/abhi.jpg"
+                src={
+                  users.filter((user) => user.id === post?.userId)[0].profileImg
+                }
                 alt=""
                 className="postUserImg"
               />
               <div className="postInfo">
-                <span className="postUserName">Abhi </span>
-                <span className="postDate">2 mins ago.</span>
+                <span className="postUserName">
+                  {users.filter((user) => user.id === post?.userId)[0].username}
+                </span>
+                <span className="postDate">{post.date}</span>
               </div>
             </div>
             <div className="postCardHeaderRight">
@@ -26,12 +30,8 @@ function Post() {
             </div>
           </div>
           <div className="postCardBody">
-            <p className="postText">My city💕</p>
-            <img
-              src="./assets/images/post/paris.jpg"
-              alt=""
-              className="postImg"
-            />
+            <p className="postText">{post.description}</p>
+            <img src={post?.image} alt="" className="postImg" />
           </div>
           <div className="postCardFooter">
             <div className="postCardFooterLeft">
@@ -45,10 +45,10 @@ function Post() {
                 alt=""
                 className="postIconsImg"
               />
-              <span className="postCounter">5 People like it</span>
+              <span className="postCounter">{post.like} People like it</span>
             </div>
             <div className="postCardFooterRight">
-              <div className="postComments">0 Comments</div>
+              <div className="postComments">{post.comment} Comments</div>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { posts } from "../../data";
 import Post from "../post/Post";
 import Share from "../share/Share";
 import Story from "../story/Story";
@@ -9,8 +10,9 @@ function News() {
     <div className="news">
       <Story />
       <Share />
-      <Post />
-      <Post />
+      {posts.map((post) => (
+        <Post post={post} key={post.id} />
+      ))}
     </div>
   );
 }

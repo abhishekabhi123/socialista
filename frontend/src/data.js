@@ -54,8 +54,7 @@ export const posts = [
   },
   {
     id: 4,
-    description:
-      "lorem ipsum dolor sit amet, consectetur adip non pro id el element ullamcorper lore m  altogether",
+    description: "Quis quos eum maxime consequuntur enim debitis et.",
     image: "./assets/images/user/user.png",
     date: "15 minutes ago",
     userId: 4,
@@ -78,24 +77,20 @@ export const story = [
     id: 1,
     image: "./assets/images/post/paris.jpg",
     userId: 1,
-    username: "Abhi",
   },
   {
     id: 2,
     image: "./assets/images/post/paris.jpg",
     userId: 2,
-    username: "Abhijith",
   },
   {
     id: 3,
     image: "./assets/images/post/paris.jpg",
     userId: 3,
-    username: "Gokul",
   },
   {
     id: 4,
     image: "./assets/images/post/paris.jpg",
     userId: 4,
-    username: "Goutham",
   },
 ];

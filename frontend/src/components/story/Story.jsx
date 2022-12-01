@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { story, users } from "../../data";
 import "./story.css";
 
 function Story() {
@@ -31,101 +32,33 @@ function Story() {
                 <input type="file" name="" id="add" className="hidden" />
               </div>
             </div>
-            <div className="storyGroup">
-              <div className="storyDiv">
-                <div className="storyUserAddImgDiv">
-                  {
+            {story.map((s) => (
+              <div className="storyGroup">
+                <div className="storyDiv">
+                  <div className="storyUserAddImgDiv">
                     <img
-                      src="./assets/images/user/storyuser.jpg"
+                      src={
+                        users.filter((user) => user.id === s?.userId[0])
+                          .profileImg
+                      }
                       className="storyUserAddImg"
                       alt=""
                     />
-                  }
-                </div>
-                <div className="storyUser">
-                  <img src="./assets/images/user/story.jpg" alt="" />
-                </div>
-                <div className="storyUserTitle">
-                  <h5>Your story</h5>
-                </div>
-              </div>
-            </div>
-            <div className="storyGroup">
-              <div className="storyDiv">
-                <div className="storyUserAddImgDiv">
-                  {
-                    <img
-                      src="./assets/images/user/storyuser.jpg"
-                      className="storyUserAddImg"
-                      alt=""
-                    />
-                  }
-                </div>
-                <div className="storyUser">
-                  <img src="./assets/images/user/story.jpg" alt="" />
-                </div>
-                <div className="storyUserTitle">
-                  <h5>Your story</h5>
+                  </div>
+                  <div className="storyUser">
+                    <img src={s.image} alt="" />
+                  </div>
+                  <div className="storyUserTitle">
+                    <h5>
+                      {
+                        users.filter((user) => user.id === s?.userId)[0]
+                          .username
+                      }
+                    </h5>
+                  </div>
                 </div>
               </div>
-            </div>{" "}
-            <div className="storyGroup">
-              <div className="storyDiv">
-                <div className="storyUserAddImgDiv">
-                  {
-                    <img
-                      src="./assets/images/user/storyuser.jpg"
-                      className="storyUserAddImg"
-                      alt=""
-                    />
-                  }
-                </div>
-                <div className="storyUser">
-                  <img src="./assets/images/user/story.jpg" alt="" />
-                </div>
-                <div className="storyUserTitle">
-                  <h5>Your story</h5>
-                </div>
-              </div>
-            </div>{" "}
-            <div className="storyGroup">
-              <div className="storyDiv">
-                <div className="storyUserAddImgDiv">
-                  {
-                    <img
-                      src="./assets/images/user/storyuser.jpg"
-                      className="storyUserAddImg"
-                      alt=""
-                    />
-                  }
-                </div>
-                <div className="storyUser">
-                  <img src="./assets/images/user/story.jpg" alt="" />
-                </div>
-                <div className="storyUserTitle">
-                  <h5>Your story</h5>
-                </div>
-              </div>
-            </div>{" "}
-            <div className="storyGroup">
-              <div className="storyDiv">
-                <div className="storyUserAddImgDiv">
-                  {
-                    <img
-                      src="./assets/images/user/storyuser.jpg"
-                      className="storyUserAddImg"
-                      alt=""
-                    />
-                  }
-                </div>
-                <div className="storyUser">
-                  <img src="./assets/images/user/story.jpg" alt="" />
-                </div>
-                <div className="storyUserTitle">
-                  <h5>Your story</h5>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </TabPanel>
 
