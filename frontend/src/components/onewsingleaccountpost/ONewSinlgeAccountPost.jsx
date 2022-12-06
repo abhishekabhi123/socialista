@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { Fragment, useState } from "react";
 import { users } from "../../data";
 
-import { Fragment } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./newsingleaccountpost.css";
-
-function NewSingleAccountPost({ post }) {
+function ONewSinlgeAccountPost({ post }) {
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -20,9 +17,9 @@ function NewSingleAccountPost({ post }) {
           <div className="nsapCardHeader">
             <div className="nsapCardHeaderLeft">
               <img
-                src={
+                src={`../${
                   users.filter((user) => user.id === post?.userId)[0].profileImg
-                }
+                }`}
                 alt=""
                 className="nsapUserImg"
               />
@@ -39,20 +36,20 @@ function NewSingleAccountPost({ post }) {
           </div>
           <div className="nsapCardBody">
             <p className="nsapText">{post.description}</p>
-            <img src={post?.image} alt="" className="nsapImg" />
+            <img src={`../${post?.image}`} alt="" className="nsapImg" />
           </div>
           <div className="nsapCardFooter">
             <div className="nsapCardFooterLeft">
               {isLiked ? (
                 <>
                   <img
-                    src="./assets/images/icons/thumb-down.png"
+                    src="../assets/images/icons/thumb-down.png"
                     alt=""
                     className="nsapIconsImg"
                     onClick={likeHandler}
                   />
                   <img
-                    src="./assets/images/icons/like.png"
+                    src="../assets/images/icons/like.png"
                     alt=""
                     className="nsapIconsImg"
                     onClick={likeHandler}
@@ -61,13 +58,13 @@ function NewSingleAccountPost({ post }) {
               ) : (
                 <Fragment>
                   <img
-                    src="./assets/images/icons/thumb-up.png"
+                    src="../assets/images/icons/thumb-up.png"
                     alt=""
                     className="nsapIconsImg"
                     onClick={likeHandler}
                   />
                   <img
-                    src="./assets/images/icons/heart.png"
+                    src="../assets/images/icons/heart.png"
                     alt=""
                     className="nsapIconsImg"
                     onClick={likeHandler}
@@ -87,4 +84,4 @@ function NewSingleAccountPost({ post }) {
   );
 }
 
-export default NewSingleAccountPost;
+export default ONewSinlgeAccountPost;

@@ -1,20 +1,21 @@
 import React, { Fragment } from "react";
-import Cover from "../../components/cover/Cover";
 import Footer from "../../components/footer/Footer";
-import NewAccountPost from "../../components/newaccountpost/NewAccountPost";
-import Rightbar from "../../components/rightbar/Rightbar";
-import Top from "../../components/top/Top";
+import NewSingleAccountPost from "../../components/newsingleaccountpost/NewSingleAccountPost";
+import OCover from "../../components/ocover/OCover";
+import ONewAccountPost from "../../components/onewaccountpost/ONewAccountPost";
+import ORightBar from "../../components/orightbar/ORightBar";
+import OTop from "../../components/Otop/OTop";
 import "./ouserprofile.css";
 
 function OUserProfile() {
   return (
     <Fragment>
-      <Top />
+      <OTop />
       <div className="mainContainer d-flex">
-        <Cover />
+        <OCover />
         <div className="nADiv">
-          <NewAccountPost />
-          <Rightbar />
+          <ONewAccountPost />
+          <ORightBar />
         </div>
       </div>
       <Footer />

@@ -6,6 +6,7 @@ import AdminUsers from "./pages/admin-users/AdminUsers";
 import Friends from "./pages/friends/Friends";
 import Home from "./pages/home/Home";
 import Login from "./pages/Login/Login";
+import NewFriends from "./pages/newfriends/NewFriends";
 import OUserProfile from "./pages/ouserprofile/OUserProfile";
 import Register from "./pages/register/Register";
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/user/:id" element={<OUserProfile />} />
+          <Route path="/add" element={<NewFriends />} />
         </Routes>
       </Router>
     </div>

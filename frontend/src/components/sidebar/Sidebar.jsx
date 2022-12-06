@@ -3,6 +3,7 @@ import "./sidebar.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faAdd,
   faArrowDown,
   faBook,
   faEye,
@@ -30,6 +31,12 @@ function Sidebar() {
           <FontAwesomeIcon icon={faUser} />
           <Link to="/friends" className="SubTitle">
             Friends
+          </Link>
+        </div>
+        <div className="sidebarGroup">
+          <FontAwesomeIcon icon={faAdd} />
+          <Link to="/add" className="SubTitle">
+            Add Friends
           </Link>
         </div>
         <div className="sidebarGroup">

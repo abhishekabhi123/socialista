@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import Cover from "../../components/cover/Cover";
 import Footer from "../../components/footer/Footer";
 import NewAccountPost from "../../components/newaccountpost/NewAccountPost";
-import News from "../../components/news/News";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Top from "../../components/top/Top";
 import "./account.css";

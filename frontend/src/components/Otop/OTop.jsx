@@ -54,14 +54,12 @@ function OTop() {
         <div className="user">
           <Link to="/account">
             <img
-              src="./assets/images/user/user.png"
+              src="../assets/images/user/user.png"
               alt=""
               className="userImage"
             />
           </Link>
-          <span className="userLogout" onClick={logout}>
-            Logout
-          </span>
+          <span className="userLogout">Logout</span>
         </div>
       </div>
     </div>
