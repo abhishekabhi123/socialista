@@ -1,6 +1,7 @@
 .rightbar {
   flex: 1;
   margin-top: 0.625rem;
+  height: calc(100vh - 5rem);
 }
 .online {
   margin-bottom: 1.875rem;

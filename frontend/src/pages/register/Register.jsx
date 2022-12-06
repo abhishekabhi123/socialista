@@ -24,7 +24,7 @@ function Register() {
       error_msg: "",
     },
     gender: {
-      value: "",
+      value: undefined,
       error: true,
       error_msg: "",
     },
@@ -94,6 +94,10 @@ function Register() {
       email: values.email.value,
       password: values.password.value,
     };
+    if (!data.gender) {
+      setError("Gender is required");
+      return;
+    }
     // if(values.name.error || values.email.error || values.password.error) return;
     axios
       .post("http://localhost:5000/api/register", data)

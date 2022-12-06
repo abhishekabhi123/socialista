@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { story, users } from "../../data";
+import { story } from "../../data";
+import NewStory from "../newstory/NewStory";
 import "./story.css";
 
 function Story() {
@@ -33,31 +34,7 @@ function Story() {
               </div>
             </div>
             {story.map((s) => (
-              <div className="storyGroup">
-                <div className="storyDiv">
-                  <div className="storyUserAddImgDiv">
-                    <img
-                      src={
-                        users.filter((user) => user.id === s?.userId[0])
-                          .profileImg
-                      }
-                      className="storyUserAddImg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="storyUser">
-                    <img src={s.image} alt="" />
-                  </div>
-                  <div className="storyUserTitle">
-                    <h5>
-                      {
-                        users.filter((user) => user.id === s?.userId)[0]
-                          .username
-                      }
-                    </h5>
-                  </div>
-                </div>
-              </div>
+              <NewStory s={s} key={s.id} />
             ))}
           </div>
         </TabPanel>

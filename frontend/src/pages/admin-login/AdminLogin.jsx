@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axios";
 import "./Login.css";
 
-function Login() {
+function AdminLogin() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
@@ -20,15 +20,15 @@ function Login() {
   const handleSubmit = () => {
     console.log(values);
     axios
-      .post("/api/login", values)
+      .post("/admin/login", values)
       .then((result) => {
         console.log("success : ", result);
-        localStorage.setItem("accessToken", result.data.access_token);
-        navigate("/");
+        localStorage.setItem("adminAccessToken", result.data.access_token);
+        navigate("/admin");
       })
       .catch((error) => {
         console.error("error : ", error.response.data);
-        setError(error.response.data.msg);
+        setError(error.response.data);
       });
   };
 
@@ -78,4 +78,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AdminLogin;

@@ -1,4 +1,9 @@
 .news {
-  flex: 2;
+  flex: 3;
   background-color: #fff;
+  height: calc(100vh - 5rem);
+  overflow-y: scroll;
+}
+.news::-webkit-scrollbar {
+  display: none;
 }

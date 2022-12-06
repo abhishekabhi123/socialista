@@ -1,11 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
 import { users } from "../../data";
-import React, { Fragment } from "react";
-import { useState } from "react";
-import "./post.css";
+import { Fragment } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./newsingleaccountpost.css";
 
-function Post({ post }) {
+function NewSingleAccountPost({ post }) {
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -13,73 +12,72 @@ function Post({ post }) {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked); //**To like and unlike. Set false to like and true to unlike */
   };
-
   return (
-    <div className="post">
-      <div className="postGroups">
-        <div className="postGroup">
-          <div className="postCardHeader">
-            <div className="postCardHeaderLeft">
+    <div className="nsap">
+      <div className="nsapGroups">
+        <div className="nsapGroup">
+          <div className="nsapCardHeader">
+            <div className="nsapCardHeaderLeft">
               <img
                 src={
                   users.filter((user) => user.id === post?.userId)[0].profileImg
                 }
                 alt=""
-                className="postUserImg"
+                className="nsapUserImg"
               />
-              <div className="postInfo">
-                <span className="postUserName">
+              <div className="nsapInfo">
+                <span className="nsapUserName">
                   {users.filter((user) => user.id === post?.userId)[0].username}
                 </span>
-                <span className="postDate">{post.date}</span>
+                <span className="nsapDate">{post.date}</span>
               </div>
             </div>
-            <div className="postCardHeaderRight">
-              <FontAwesomeIcon icon={faEllipsis} />
+            <div className="nsapCardHeaderRight">
+              <FontAwesomeIcon icon={"ellipsis"} />
             </div>
           </div>
-          <div className="postCardBody">
-            <p className="postText">{post.description}</p>
-            <img src={post?.image} alt="" className="postImg" />
+          <div className="nsapCardBody">
+            <p className="nsapText">{post.description}</p>
+            <img src={post?.image} alt="" className="nsapImg" />
           </div>
-          <div className="postCardFooter">
-            <div className="postCardFooterLeft">
+          <div className="nsapCardFooter">
+            <div className="nsapCardFooterLeft">
               {isLiked ? (
-                <Fragment>
+                <>
                   <img
                     src="./assets/images/icons/thumb-down.png"
                     alt=""
-                    className="postIconsImg"
+                    className="nsapIconsImg"
                     onClick={likeHandler}
-                  />{" "}
+                  />
                   <img
                     src="./assets/images/icons/like.png"
                     alt=""
-                    className="postIconsImg"
+                    className="nsapIconsImg"
                     onClick={likeHandler}
                   />
-                </Fragment>
+                </>
               ) : (
                 <Fragment>
                   <img
                     src="./assets/images/icons/thumb-up.png"
                     alt=""
-                    className="postIconsImg"
+                    className="nsapIconsImg"
                     onClick={likeHandler}
                   />
                   <img
                     src="./assets/images/icons/heart.png"
                     alt=""
-                    className="postIconsImg"
+                    className="nsapIconsImg"
                     onClick={likeHandler}
                   />
                 </Fragment>
               )}
 
-              <span className="postCounter">{like} People like it</span>
+              <span className="nsapCounter">{like} People like it</span>
             </div>
-            <div className="postCardFooterRight">
-              <div className="postComments">{post.comment} Comments</div>
+            <div className="nsapCardFooterRight">
+              <div className="nsapComments">{post.comment} Comments</div>
             </div>
           </div>
         </div>
@@ -88,4 +86,4 @@ function Post({ post }) {
   );
 }
 
-export default Post;
+export default NewSingleAccountPost;

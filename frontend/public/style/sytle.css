@@ -7,6 +7,9 @@
 body {
   padding: 0.625rem 0.938rem;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 ul {
   list-style-type: none;
 }

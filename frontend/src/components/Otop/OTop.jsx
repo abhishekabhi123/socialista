@@ -1,32 +1,14 @@
-import React from "react";
-import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import "./top.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
   faMessage,
   faPerson,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "../../axios";
-import Swal from "sweetalert2";
-function Top() {
-  const navigate = useNavigate();
-  const logout = () => {
-    Swal.fire("Logout!", "Are you sure want to logout!", "error").then(
-      (state) => {
-        if (state.isConfirmed) {
-          console.log("logout");
-          axios.post("/api/logout").then((data) => {
-            console.log(data);
-            localStorage.removeItem("accessToken");
-            navigate("/login");
-          });
-        }
-      }
-    );
-  };
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
+function OTop() {
   return (
     <div className="top">
       <div className="topLeft">
@@ -86,4 +68,4 @@ function Top() {
   );
 }
 
-export default Top;
+export default OTop;

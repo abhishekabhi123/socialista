@@ -1,0 +1,75 @@
+.friends {
+  display: block;
+  margin: 0 auto;
+  width: 56.25rem;
+}
+.friendsTop {
+  display: flex;
+  align-items: center;
+  margin-top: 6.25rem;
+}
+.friendsTop .topSearch {
+  position: relative;
+  margin-left: 0.625rem;
+}
+.friendsTop .topSearch input {
+  border: none;
+  outline: none;
+  width: 12.5rem;
+  border-radius: 1.25rem;
+  background: rgb(238, 238, 238);
+  height: 1.875rem;
+  color: #000;
+  padding: 0rem 0.625rem;
+}
+
+.friendsTop .topSearch svg {
+  position: absolute;
+  right: 0.625rem;
+  color: #a5a5a5;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.friendsGroups {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* height: calc(100vh - 5rem); */
+  overflow-y: scroll;
+}
+.friendsGroups::-webkit-scrollbar {
+  display: none;
+}
+
+.friendsGroup {
+  display: flex;
+  align-items: center;
+  width: 25rem;
+  margin-right: 0.3125rem;
+  margin-top: 1.5625rem;
+  margin-bottom: 1.5625rem;
+}
+.friendsGroup img {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 0.3125rem;
+}
+.friendsName {
+  font-weight: bold;
+  margin-right: 3.75rem;
+}
+.friendsGroup button {
+  padding: 0.3125rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  background: #f00;
+  color: #fff;
+  border-radius: 0.625rem;
+  transition: all 1s;
+}
+.friendsGroup button:hover {
+  background: #fff;
+  color: #f00;
+}

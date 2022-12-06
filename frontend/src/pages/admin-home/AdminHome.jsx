@@ -4,21 +4,21 @@ import News from "../../components/news/News";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Top from "../../components/top/Top";
-import "./home.css";
-import axios from "../../axios";
+import "./AdminHome.css";
+import axios from "../../admin-axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 
-function Home() {
+function AdminHome() {
   let navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("/api")
+      .get("/admin/users")
       .then(() => {})
       .catch((err) => {
         if (err.response.status === 401) {
           localStorage.removeItem("accessToken");
-          navigate("/login");
+          navigate("/admin/login");
         }
         console.log(err);
       });
@@ -26,11 +26,19 @@ function Home() {
   return (
     <>
       <Top />
-      <div className="home">
+      <div className="admin">
         <div className="mainContainer">
-          <Sidebar />
-          <News />
-          <Rightbar />
+          <div className="sidebar">
+            <span style={{ marginTop: "2rem" }}>Dashboard</span>
+            <span>Home</span>
+            <span onClick={() => navigate("/admin/users")}>Users</span>
+            <span>Posts</span>
+            <span>Reports</span>
+          </div>
+          <h1>Home Page</h1>
+          {/* <Sidebar /> */}
+          {/* <News /> */}
+          {/* <Rightbar /> */}
         </div>
       </div>
       <Footer />
@@ -38,4 +46,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default AdminHome;

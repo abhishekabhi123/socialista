@@ -1,0 +1,86 @@
+.accountDiv {
+  width: 62.5rem;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.accountCover {
+  position: absolute;
+  top: -4.375rem;
+  width: 100%;
+  height: 25rem;
+  border-radius: 1.25rem;
+}
+
+.accountCover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.25rem;
+}
+.accountInfo {
+  position: relative;
+}
+.accountInfoLeft {
+  position: absolute;
+  top: 17.5rem;
+  left: 2.5rem;
+}
+
+.accountInfoLeft img {
+  width: 11.25rem;
+  height: 11.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.accountInfoRight {
+  position: absolute;
+  top: 21.25rem;
+  left: 15rem;
+}
+.userFriends {
+  padding: 0.625rem 0;
+}
+.userName {
+  margin-bottom: 0.625rem;
+}
+.friends {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 0.625rem;
+}
+.friends img {
+  width: 3.125rem;
+  height: 3.125rem;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 0.3125rem;
+}
+.dots {
+  font-size: 1.875rem;
+}
+.mainContainer.d-flex {
+  display: grid;
+}
+.nADiv {
+  display: flex;
+  margin-top: 34.375rem;
+}
+.nAPost {
+  flex: 4;
+  margin-right: 0.625rem;
+  border-radius: 1.25rem;
+}
+.nAShareDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1.25rem;
+  height: calc(100vh - 5rem);
+  overflow-y: scroll;
+}
+
+.nAShareDiv::-webkit-scrollbar {
+  display: none;
+}
