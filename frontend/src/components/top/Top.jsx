@@ -8,24 +8,28 @@ import {
   faPerson,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "../../axios";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+
 function Top() {
   const navigate = useNavigate();
-  const logout = () => {
-    Swal.fire("Logout!", "Are you sure want to logout!", "error").then(
-      (state) => {
-        if (state.isConfirmed) {
-          console.log("logout");
-          axios.post("/api/logout").then((data) => {
-            console.log(data);
-            localStorage.removeItem("accessToken");
-            navigate("/login");
-          });
-        }
-      }
-    );
+
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+
+  const logoutHandler = () => {
+    localStorage.removeItem("userInfo");
+    toast.success("Successfully logged out");
+    navigate("/login");
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("userInfo")) {
+      localStorage.getItem("userInfo");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <div className="top">
@@ -46,40 +50,49 @@ function Top() {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/friends" activeclassname="active">
-                Friends
-              </NavLink>
-            </li>
+            {userInfo && (
+              <li>
+                <NavLink to="/friends" activeclassname="active">
+                  Friends
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>
       <div className="topRight">
-        <div className="notifications">
-          <div className="notification">
-            <FontAwesomeIcon icon={faPerson} />
-            <span className="badge">1</span>
-          </div>
-          <div className="notification">
-            <FontAwesomeIcon icon={faMessage} />
-            <span className="badge">1</span>
-          </div>
-          <div className="notification">
-            <FontAwesomeIcon icon={faBell} />
-            <span className="badge">1</span>
-          </div>
-        </div>
+        {userInfo && (
+          <>
+            <div className="notifications">
+              <div className="notification">
+                <FontAwesomeIcon icon={faPerson} />
+                <span className="badge">1</span>
+              </div>
+              <div className="notification">
+                <FontAwesomeIcon icon={faMessage} />
+                <span className="badge">1</span>
+              </div>
+              <div className="notification">
+                <FontAwesomeIcon icon={faBell} />
+                <span className="badge">1</span>
+              </div>
+            </div>
+          </>
+        )}
+
         <div className="user">
-          <Link to="/account">
-            <img
-              src="./assets/images/user/user.png"
-              alt=""
-              className="userImage"
-            />
-          </Link>
-          <span className="userLogout" onClick={logout}>
-            Logout
-          </span>
+          {userInfo ? (
+            <>
+              <Link to="/account">
+                <img src={userInfo.imageprofile} alt="" className="userImage" />
+              </Link>
+              <span className="userLogout" onClick={logoutHandler}>
+                Logout
+              </span>
+            </>
+          ) : (
+            <NavLink to="/login">Login</NavLink>
+          )}
         </div>
       </div>
     </div>

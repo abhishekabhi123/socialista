@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function MyFriends({ user }) {
+function MyFriends({ friend }) {
   return (
-    <Link to="/user/:1234567">
+    <Link to={`/user/${friend._id}`}>
       <div className="friendsGroup">
-        <img src={user.profileImg} alt={user.username} className="friendsImg" />
-        <p className="friendsName">{user.username}</p>
+        <img
+          src={friend.imageprofile}
+          alt={friend.username}
+          className="friendsImg"
+        />
+        <p className="friendsName">{friend.username}</p>
         <button>Delete friend</button>
       </div>
     </Link>

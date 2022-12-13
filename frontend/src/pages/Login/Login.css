@@ -1,17 +1,93 @@
-.login-page .form_container {
+.form {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width: 300px;
-  padding: 2%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.login-page .hyperlink {
-  margin-top: 1rem;
+.formGroups {
+  width: 43.75rem;
+  height: auto;
+  display: flex;
+  border-radius: 1.25rem;
+  background: #eee;
+  padding: 1.25rem 0.9375rem;
 }
 
-.login-page .error-txt {
-  color: red;
-  margin: auto;
-  margin-bottom: 10px;
+.formLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formRight {
+  flex: 1;
+}
+.formsSubTitle {
+  font-size: 1.25rem;
+  letter-spacing: 0.0813rem;
+  margin-bottom: 0.625rem;
+}
+
+.formsTitle {
+  text-transform: uppercase;
+  letter-spacing: 0.0813rem;
+  font-size: 2.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.25rem;
+}
+
+.formGroup input {
+  height: 2.5rem;
+  border: none;
+  outline: none;
+  padding: 0 0.625rem;
+  width: 100%;
+  border-radius: 0.625rem;
+}
+
+.form-btnLogin button {
+  display: block;
+  margin: 0 auto;
+  padding: 0.3125rem 1.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  background: #00f;
+  color: #fff;
+  font-size: 1.125rem;
+  border-radius: 0.625rem;
+  transition: all 0.5s;
+  letter-spacing: 0.0813rem;
+}
+.form-btnLogin button:hover {
+  background: #fff;
+  color: #4141ff;
+}
+
+.form-btnRegister {
+  margin-top: 5rem;
+}
+
+.form-btnRegister a {
+  display: block;
+  margin: 0 auto;
+  width: max-content;
+  padding: 0.3125rem 1.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  background: #01ff2c;
+  color: #fff;
+  font-size: 1.125rem;
+  border-radius: 0.625rem;
+  transition: all 1s;
+  letter-spacing: 0.0813rem;
+}
+.form-btnRegister button:hover {
+  background: #fff;
+  color: #01ff2c;
 }

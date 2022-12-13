@@ -16,8 +16,8 @@
   background: none !important;
   border: none !important;
   border-color: none !important;
-  border-bottom: 1px solid #f00 !important;
-  color: #f00 !important;
+  border-bottom: 1px solid #fff !important;
+  color: #fff !important;
 }
 .storyGroups {
   display: flex;
@@ -116,4 +116,21 @@
   height: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
+}
+.addStory {
+  display: block;
+  margin: 10px auto;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 5px;
+  border-radius: 5px;
+  color: #000000;
+  font-weight: bold;
+  transition: all 0.5s;
+  font-size: 18px;
+}
+
+.addStory:hover {
+  color: #ff0000;
 }

@@ -1,80 +1,79 @@
-import { Button, Grid, Paper, TextField } from "@mui/material";
-import { useState } from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../../axios";
+import { toast } from "react-toastify";
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState();
-  const handleChange = (e) => {
-    //keyof GlobalEventHandlersEventMap
-    console.log(values);
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-  const handleSubmit = () => {
-    console.log(values);
-    axios
-      .post("/api/login", values)
-      .then((result) => {
-        console.log("success : ", result);
-        localStorage.setItem("accessToken", result.data.access_token);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("error : ", error.response.data);
-        setError(error.response.data.msg);
+  const [userauth, setUserauth] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    console.log(userauth);
+    try {
+      const { data } = await axios.post("/api/users/login", {
+        userauth,
+        password,
       });
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      toast.success("Login Success");
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      toast.error("Invalid email/password");
+    }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("userInfo")) {
+      localStorage.getItem("userInfo");
+      navigate("/");
+    }
+  }, [navigate]);
+  console.log(userauth);
 
   return (
-    <>
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: "100vh" }}
-        className="login-page"
-      >
-        <Paper elevation={10} className="form_container">
-          <TextField
-            name="email"
-            id="outlined-error-helper-text"
-            label="Email"
-            placeholder="jojit@gmail.com"
-            fullWidth
-            onChange={handleChange}
-            sx={{ margin: "10px 0px" }}
-          />
-          <TextField
-            name="password"
-            id="outlined-error-helper-text"
-            label="Password"
-            placeholder=""
-            type="password"
-            fullWidth
-            onChange={handleChange}
-            sx={{ margin: "10px 0px" }}
-          />
-          <span className="error-txt">{error ? error : null}</span>
-
-          <Grid container direction="row-reverse">
-            <Button onClick={handleSubmit} variant="contained">
-              Login
-            </Button>
-          </Grid>
-          <Grid container justifyContent="center" className="hyperlink">
-            Don't have an account? <Link to="/register">Register</Link>
-          </Grid>
-        </Paper>
-      </Grid>
-    </>
+    <div className="form">
+      <div className="formGroups">
+        <div className="formLeft">
+          <h4 className="formSubTitle">
+            Connect with friends and the world around you on Socialista.
+          </h4>
+          <h1 className="formsTitle">Socialista</h1>
+        </div>
+        <div className="formRight">
+          <form onSubmit={loginHandler}>
+            <div className="formGroup">
+              <input
+                type="text"
+                required
+                onChange={(e) => setUserauth(e.target.value)}
+                placeholder="Email "
+              />
+            </div>
+            <div className="formGroup">
+              <input
+                type="password"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
+            </div>
+            <div className="formGroup form-btnLogin">
+              <button>Login</button>
+            </div>
+            <div className="formGroup form-btnRegister">
+              <Link to="/register">Create New Account</Link>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
 

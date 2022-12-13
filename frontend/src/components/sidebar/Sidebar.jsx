@@ -14,19 +14,24 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Sidebar() {
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
   return (
     <div className="sidebar">
       <div className="sidebarGroups">
-        <div className="sidebarGroup">
-          <Link to="/account" className="sidebarLink">
-            <img
-              src="./assets/images/user/user.png"
-              alt=""
-              className="currentUserImage"
-            />
-            <span className=" currentUserName">Abhi</span>
-          </Link>
-        </div>
+        {userInfo && (
+          <div className="sidebarGroup">
+            <Link to="/account" className="sidebarLink">
+              <img
+                src={userInfo.imageprofile}
+                alt=""
+                className="currentUserImage"
+              />
+              <span className=" currentUserName">{userInfo.username}</span>
+            </Link>
+          </div>
+        )}
         <div className="sidebarGroup">
           <FontAwesomeIcon icon={faUser} />
           <Link to="/friends" className="SubTitle">

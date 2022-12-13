@@ -1,18 +1,42 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { users } from "../../data";
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./post.css";
+import axios from "axios";
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 function Post({ post }) {
-  const [like, setLike] = useState(post.like);
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+
+  const [users, setUsers] = useState({});
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
 
+  useEffect(() => {
+    setIsLiked(post.likes.includes(userInfo._id));
+  }, [post.likes, userInfo._id]);
+
   const likeHandler = () => {
+    try {
+      axios.put("/api/posts/" + post._id + "/like", { userId: userInfo._id });
+    } catch (error) {}
+
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked); //**To like and unlike. Set false to like and true to unlike */
   };
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const resultPosts = await axios.get(`/api/users/${post.userId}`);
+      setUsers(resultPosts.data);
+      console.log(resultPosts.data);
+    };
+    fetchUsers();
+  }, [post.userId]);
 
   return (
     <div className="post">
@@ -20,18 +44,26 @@ function Post({ post }) {
         <div className="postGroup">
           <div className="postCardHeader">
             <div className="postCardHeaderLeft">
-              <img
-                src={
-                  users.filter((user) => user.id === post?.userId)[0].profileImg
-                }
-                alt=""
-                className="postUserImg"
-              />
+              {userInfo ? (
+                <Link to={`/account`}>
+                  <img
+                    src={users.imageprofile}
+                    alt=""
+                    className="postUserImg"
+                  />
+                </Link>
+              ) : (
+                <Link to={`/users/${users.username}`}>
+                  <img
+                    src={users.imageprofile}
+                    alt=""
+                    className="postUserImg"
+                  />
+                </Link>
+              )}
               <div className="postInfo">
-                <span className="postUserName">
-                  {users.filter((user) => user.id === post?.userId)[0].username}
-                </span>
-                <span className="postDate">{post.date}</span>
+                <span className="postUserName">{users.username}</span>
+                <span className="postDate">{format(post.createdAt)}</span>
               </div>
             </div>
             <div className="postCardHeaderRight">
@@ -39,13 +71,17 @@ function Post({ post }) {
             </div>
           </div>
           <div className="postCardBody">
-            <p className="postText">{post.description}</p>
-            <img src={post?.image} alt="" className="postImg" />
+            <p className="postText">{post?.description}</p>
+            <img
+              src={`./assets/images/upload/${post?.image}`}
+              alt=""
+              className="postImg"
+            />
           </div>
           <div className="postCardFooter">
             <div className="postCardFooterLeft">
               {isLiked ? (
-                <Fragment>
+                <>
                   <img
                     src="./assets/images/icons/thumb-down.png"
                     alt=""
@@ -58,9 +94,9 @@ function Post({ post }) {
                     className="postIconsImg"
                     onClick={likeHandler}
                   />
-                </Fragment>
+                </>
               ) : (
-                <Fragment>
+                <>
                   <img
                     src="./assets/images/icons/thumb-up.png"
                     alt=""
@@ -73,7 +109,7 @@ function Post({ post }) {
                     className="postIconsImg"
                     onClick={likeHandler}
                   />
-                </Fragment>
+                </>
               )}
 
               <span className="postCounter">{like} People like it</span>

@@ -23,7 +23,11 @@ function Story() {
               <div className="storyCard">
                 <label htmlFor="add">
                   <div className="storyBody">
-                    <img src="./assets/images/user/user.png" alt="" />
+                    <img
+                      src="./assets/images/user/user.png"
+                      alt=""
+                      className="storyBodyImg"
+                    />
                   </div>
                   <div className="storyFooter">
                     <FontAwesomeIcon icon={faAdd} />

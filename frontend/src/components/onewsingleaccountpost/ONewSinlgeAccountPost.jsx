@@ -1,15 +1,40 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Fragment, useState } from "react";
-import { users } from "../../data";
+import axios from "axios";
+import React, { Fragment, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { format } from "timeago.js";
 
 function ONewSinlgeAccountPost({ post }) {
-  const [like, setLike] = useState(post.like);
+  const location = useLocation();
+  console.log(location);
+  const id = location.pathname.split("/")[2];
+  console.log(id);
+
+  const [user, setUser] = useState([]);
+
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
 
+  useEffect(() => {
+    setIsLiked(post.likes.includes(id));
+  }, [id, post.likes]);
+
   const likeHandler = () => {
+    try {
+      axios.put("/api/posts/" + post._id + "/like", { userId: id });
+    } catch (error) {}
+
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked); //**To like and unlike. Set false to like and true to unlike */
   };
+  useEffect(() => {
+    const fetchUser = async () => {
+      const resultPosts = await axios.get(`/api/users/${id}`);
+      setUser(resultPosts.data);
+      console.log(resultPosts.data);
+    };
+    fetchUser();
+  }, [id]);
   return (
     <div className="nsap">
       <div className="nsapGroups">
@@ -17,17 +42,13 @@ function ONewSinlgeAccountPost({ post }) {
           <div className="nsapCardHeader">
             <div className="nsapCardHeaderLeft">
               <img
-                src={`../${
-                  users.filter((user) => user.id === post?.userId)[0].profileImg
-                }`}
-                alt=""
+                src={`../${user.imageprofile}`}
+                alt={user.username}
                 className="nsapUserImg"
               />
               <div className="nsapInfo">
-                <span className="nsapUserName">
-                  {users.filter((user) => user.id === post?.userId)[0].username}
-                </span>
-                <span className="nsapDate">{post.date}</span>
+                <span className="nsapUserName">{user.username}</span>
+                <span className="nsapDate">{format(post.createdAt)}</span>
               </div>
             </div>
             <div className="nsapCardHeaderRight">
@@ -35,8 +56,12 @@ function ONewSinlgeAccountPost({ post }) {
             </div>
           </div>
           <div className="nsapCardBody">
-            <p className="nsapText">{post.description}</p>
-            <img src={`../${post?.image}`} alt="" className="nsapImg" />
+            <p className="nsapText">{post?.description}</p>
+            <img
+              src={`./assets/images/upload/${post?.image}`}
+              alt=""
+              className="nsapImg"
+            />
           </div>
           <div className="nsapCardFooter">
             <div className="nsapCardFooterLeft">

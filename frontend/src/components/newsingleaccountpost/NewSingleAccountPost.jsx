@@ -1,18 +1,41 @@
-import React, { useState } from "react";
-import { users } from "../../data";
-
+import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./newsingleaccountpost.css";
+import axios from "axios";
+import { format } from "timeago.js";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 function NewSingleAccountPost({ post }) {
-  const [like, setLike] = useState(post.like);
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+
   const [isLiked, setIsLiked] = useState(false);
+  const [users, setUsers] = useState({});
+  const [like, setLike] = useState(post.likes.length);
+
+  useEffect(() => {
+    setIsLiked(post.likes.includes(userInfo._id));
+  }, [post.likes, userInfo._id]);
 
   const likeHandler = () => {
+    try {
+      axios.put("/api/posts/" + post._id + "/like", { userId: userInfo._id });
+    } catch (error) {}
+
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked); //**To like and unlike. Set false to like and true to unlike */
   };
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const resultPosts = await axios.get(`/api/users/${userInfo._id}`);
+      setUsers(resultPosts.data);
+      console.log(resultPosts.data);
+    };
+    fetchUsers();
+  }, [userInfo._id]);
+
   return (
     <div className="nsap">
       <div className="nsapGroups">
@@ -20,26 +43,26 @@ function NewSingleAccountPost({ post }) {
           <div className="nsapCardHeader">
             <div className="nsapCardHeaderLeft">
               <img
-                src={
-                  users.filter((user) => user.id === post?.userId)[0].profileImg
-                }
-                alt=""
+                src={users.imageprofile}
+                alt={users.username}
                 className="nsapUserImg"
               />
               <div className="nsapInfo">
-                <span className="nsapUserName">
-                  {users.filter((user) => user.id === post?.userId)[0].username}
-                </span>
-                <span className="nsapDate">{post.date}</span>
+                <span className="nsapUserName">{users.username}</span>
+                <span className="nsapDate">{format(post.createdAt)}</span>
               </div>
             </div>
             <div className="nsapCardHeaderRight">
-              <FontAwesomeIcon icon={"ellipsis"} />
+              <FontAwesomeIcon icon={faEllipsis} />
             </div>
           </div>
           <div className="nsapCardBody">
-            <p className="nsapText">{post.description}</p>
-            <img src={post?.image} alt="" className="nsapImg" />
+            <p className="nsapText">{post?.description}</p>
+            <img
+              src={`./assets/images/upload/${post?.image}`}
+              alt=""
+              className="nsapImg"
+            />
           </div>
           <div className="nsapCardFooter">
             <div className="nsapCardFooterLeft">

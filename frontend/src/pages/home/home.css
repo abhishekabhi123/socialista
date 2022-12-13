@@ -1,4 +1,4 @@
-.home .mainContainer {
+.mainContainer {
   display: flex;
   padding-top: 3.125rem;
   min-height: calc(100vh - 6.875rem);

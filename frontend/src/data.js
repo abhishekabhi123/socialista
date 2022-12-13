@@ -1,3 +1,4 @@
+// import { user } from "../public/assets/images/user/user.png";
 export const users = [
   {
     id: 1,

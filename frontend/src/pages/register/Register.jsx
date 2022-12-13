@@ -1,212 +1,96 @@
-import { Button, Grid, Paper, TextField } from "@mui/material/";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./register.css";
+import { toast } from "react-toastify";
 import axios from "axios";
-import { isRegisterFormValid } from "../../config/validation";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
+import "./register.css";
 
 function Register() {
   const navigate = useNavigate();
-  const [values, setValues] = useState({
-    username: {
-      value: "",
-      error: true,
-      error_msg: "",
-    },
-    fullname: {
-      value: "",
-      error: true,
-      error_msg: "",
-    },
-    gender: {
-      value: undefined,
-      error: true,
-      error_msg: "",
-    },
-    email: {
-      value: "",
-      error: true,
-      error_msg: "",
-    },
-    password: {
-      value: "",
-      error: true,
-      error_msg: "",
-    },
-  });
-  const [error, setError] = useState("");
-  const handleChange = (e) => {
-    //keyof GlobalEventHandlersEventMap
-    console.log(values);
-    e.target.value = e.target.value;
+  const [username, setUsername] = useState("");
+  const [userauth, setUserauth] = useState("");
+  const [password, setPassword] = useState("");
+  const [rPassword, setRPassword] = useState("");
 
-    let validateObj = {
-      username:
-        e.target.name === "username" ? e.target.value : values.username.value,
-      fullname:
-        e.target.name === "fullname" ? e.target.value : values.fullname.value,
-      email: e.target.name === "email" ? e.target.value : values.email.value,
-      password:
-        e.target.name === "password" ? e.target.value : values.password.value,
-      gender: e.target.name === "gender" ? e.target.value : values.gender.value,
-    };
-    isRegisterFormValid(validateObj)
-      .then(() => {
-        setValues({
-          ...values,
-          [e.target.name]: { value: e.target.value, error: false },
-        });
-      })
-      .catch((err) => {
-        err = err.filter((er) => {
-          if (er.path[0] === e.target.name) {
-            return er;
-          }
-        });
-        if (err.length > 0) {
-          console.log("`````", err);
-          setValues({
-            ...values,
-            [e.target.name]: {
-              value: e.target.value,
-              error: true,
-              error_msg: err[0].message,
-            },
-          });
-        } else {
-          setValues({
-            ...values,
-            [e.target.name]: { value: e.target.value, error: false },
-          });
-        }
-      });
-  };
-  const handleSubmit = () => {
-    let data = {
-      username: values.username.value,
-      fullname: values.fullname.value,
-      gender: values.gender.value,
-      email: values.email.value,
-      password: values.password.value,
-    };
-    if (!data.gender) {
-      setError("Gender is required");
+  const registerHanlder = async (e) => {
+    e.preventDefault();
+    //*Check password
+    if (password !== rPassword) {
+      toast.error("Password does not match");
       return;
     }
-    // if(values.name.error || values.email.error || values.password.error) return;
-    axios
-      .post("http://localhost:5000/api/register", data)
-      .then((result) => {
-        // console.log("success : ", result);
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.error("error : ", error.response.data);
-        setError(
-          error.response.data[0]
-            ? "Please fill out this fields"
-            : error.response.data.msg
-        );
+    try {
+      await axios.post("/api/users/register", {
+        username,
+        userauth,
+        password,
       });
+      toast.success("Successfully registered");
+      navigate("/login");
+    } catch (error) {
+      toast.error("Registration failed, please try again");
+    }
   };
+  useEffect(() => {
+    if (localStorage.getItem("userInfo")) {
+      localStorage.getItem("userInfo");
+      navigate("/");
+    }
+  }, [navigate]);
+
   return (
-    <>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: "100vh" }}
-        className="register-page"
-      >
-        <Paper elevation={10} className="form_container">
-          <TextField
-            name="username"
-            id="outlined-error-helper-text"
-            label="Username"
-            // placeholder="abhi"
-            fullWidth
-            sx={{ margin: "10px 0px" }}
-            onChange={handleChange}
-            error={values.username.error_msg ? true : false}
-            helperText={
-              values.username.error ? values.username.error_msg : null
-            }
-          />
-          <TextField
-            name="fullname"
-            id="outlined-error-helper-text"
-            label="Fullname"
-            // placeholder="abhi"
-            fullWidth
-            sx={{ margin: "10px 0px" }}
-            onChange={handleChange}
-            error={values.fullname.error_msg ? true : false}
-            helperText={
-              values.fullname.error ? values.fullname.error_msg : null
-            }
-          />
-          <TextField
-            name="email"
-            id="outlined-error-helper-text"
-            label="Email"
-            placeholder="jojit@gmail.com"
-            fullWidth
-            sx={{ margin: "10px 0px" }}
-            onChange={handleChange}
-            error={values.email.error_msg ? true : false}
-            helperText={values.email.error ? values.email.error_msg : null}
-          />
-          <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">
-              Gender
-            </FormLabel>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="gender"
-              onChange={handleChange}
-            >
-              <FormControlLabel
-                value="female"
-                control={<Radio />}
-                label="Female"
+    <div className="form">
+      <div className="formGroups">
+        <div className="formLeft">
+          <h4 className="formSubTitle">
+            Connect with friends and the world around you on Socialista.
+          </h4>
+          <h1 className="formsTitle">Socialista</h1>
+        </div>
+        <div className="formRight">
+          <form onSubmit={registerHanlder}>
+            <div className="formGroup">
+              <input
+                type="text"
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username "
+                required
               />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-            </RadioGroup>
-          </FormControl>
-          <TextField
-            name="password"
-            id="outlined-error-helper-text"
-            label="Password"
-            placeholder="asdfasdf"
-            fullWidth
-            type="password"
-            sx={{ margin: "10px 0px" }}
-            onChange={handleChange}
-            error={values.password.error_msg ? true : false}
-            helperText={
-              values.password.error ? values.password.error_msg : null
-            }
-          />
-          <span className="error-txt">{error ? error : null}</span>
-          <Grid container direction="row-reverse">
-            <Button onClick={handleSubmit} variant="contained">
-              Register
-            </Button>
-          </Grid>
-          <Grid container justifyContent="center" className="hyperlink">
-            Already Registered? <Link to="/login">Login</Link>
-          </Grid>
-        </Paper>
-      </Grid>
-    </>
+            </div>
+            <div className="formGroup">
+              <input
+                type="text"
+                onChange={(e) => setUserauth(e.target.value)}
+                placeholder="Email "
+                required
+              />
+            </div>
+            <div className="formGroup">
+              <input
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password "
+                required
+              />
+            </div>
+            <div className="formGroup">
+              <input
+                type="password"
+                onChange={(e) => setRPassword(e.target.value)}
+                placeholder="Password Retype"
+                required
+              />
+            </div>
+            <div className="formGroup form-btnLogin">
+              <button>Create new account</button>
+            </div>
+            <div className="formGroup form-btnRegister">
+              <Link to="/login">Login</Link>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
 

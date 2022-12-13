@@ -6,8 +6,8 @@
   z-index: 9999;
   display: flex;
   align-items: center;
-  height: 5rem;
   justify-content: space-between;
+  height: 5rem;
 }
 .topLeft,
 .topMiddle,
@@ -80,7 +80,7 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: bold;
+  font-weight: bold;
 }
 .topRight .user {
   margin-left: 2.5rem;
